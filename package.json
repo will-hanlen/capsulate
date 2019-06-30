@@ -1,0 +1,27 @@
+{
+  "name": "Capsulate",
+  "version": "1.0.0",
+  "description": "Photo journaling web app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "develop": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/will-hanlen/capsulate.git"
+  },
+  "author": "Will Hanlen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/will-hanlen/capsulate/issues"
+  },
+  "homepage": "https://github.com/will-hanlen/capsulate#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>New Entry</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<link rel="manifest" href="manifest.json">
+
+<style>
+
+#entry-form {
+	width: 90vw;
+	max-width: 500px;
+	margin: 5vw auto;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+#text {
+	font-family: inherit;
+	width: 100%;
+	margin: auto;
+	height: 300px;
+	padding: 15px;
+	color: darkblue;
+	outline: none;
+	border: none;
+	resize: none;
+	box-sizing: border-box;
+	border: 2px solid darkblue;
+	border-radius: 5px;
+}
+
+#text:focus {
+	border: 2px dashed darkblue;
+}
+
+input[name="photo"] {
+	position: absolute;
+	visibility: hidden;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+<div class="max700">
+	<img id="logo" src="icon.png">
+	<div>
+		<a href="/journal">Journal</a>
+	</div>
+</div>
+</nav>
+
+
+<form id="entry-form" method="POST" enctype="multipart/form-data" action="/api/entries">
+	<textarea name="text" id="text" placeholder="How was your day?" autocomplete="off" maxlength="200" required autofocus></textarea>
+
+	<input name="photo" id="photo" type="file" accept="image/*">
+	<label for="photo" id="photo-label" class="btn" tabindex="0">Upload Photo</label>
+
+	<input type="submit" name="submit" class="btn" value="Submit">
+</form>
+
+<script>
+
+var photoLabel = document.getElementById("photo-label")
+photoLabel.onkeydown = (e) => {
+	if (e.key === "Enter") {
+		e.preventDefault()
+		document.getElementById("photo").click()
+		photoLabel.textContent = "Change Photo"
+	}
+}
+
+</script>
+</body>
+</html>

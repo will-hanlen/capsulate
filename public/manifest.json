@@ -1,0 +1,11 @@
+{
+	"short_name": "Capsulate",
+	"name": "Capsulate",
+	"icons": [{"src": "icon.png", "type": "image/png", "sizes": "192x192"}],
+	"start_url": "/",
+	"background_color": "#00008b",
+	"display": "standalone",
+	"orientation": "portrait",
+	"scope": "/",
+	"theme_color": "#00008b"
+}
