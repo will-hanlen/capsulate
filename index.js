@@ -19,7 +19,7 @@ app.get("/api/photos/:fn", function(req, res) {
 
 // API: Get the nth to the mth journal entry
 app.get("/api/entries/:n/:m", function(req, res) {
-	fs.readFile('journal.csv', function(err, data) {
+	fs.readFile('journal.txt', function(err, data) {
 		if (err) throw err
 		entries = data.toString().split("\n")
 		let n = parseInt(req.params.n)
@@ -42,8 +42,8 @@ app.post("/api/entries",  function(req, res) {
 		hasPhoto = true
 	}
 
-	const data = fs.readFileSync('journal.csv')
-	const fd = fs.openSync('journal.csv', 'w+')
+	const data = fs.readFileSync('journal.txt')
+	const fd = fs.openSync('journal.txt', 'w+')
 	let entryText = `${timestamp}:::${hasPhoto}:::${req.body.text}\n`
 	const insert = Buffer.alloc(entryText.length)
 	insert.write(entryText)
@@ -58,4 +58,14 @@ app.post("/api/entries",  function(req, res) {
 })
 
 // Start server
-app.listen(1998)
+app.listen(1998, function(err) {
+	if (err) throw err
+
+	if (!fs.existsSync(path.join(__dirname, "photos/"))) {
+		fs.mkdir(path.join(__dirname, "photos/"), function(err) {if (err) throw err})
+	}
+
+	if (!fs.existsSync(path.join(__dirname, "journal.txt"))) {
+		fs.closeSync(fs.openSync(path.join(__dirname, "journal.txt"), "w"))
+	}
+})
