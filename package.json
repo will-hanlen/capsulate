@@ -19,9 +19,8 @@
   "homepage": "https://github.com/will-hanlen/capsulate#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-fileupload": "^1.1.5"
+    "express-fileupload": "^1.1.5",
+    "serve-favicon": "^2.5.0"
   },
-  "devDependencies": {
-    "nodemon": "^1.19.1"
-  }
+  "devDependencies": {}
 }
