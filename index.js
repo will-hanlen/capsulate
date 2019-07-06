@@ -21,6 +21,11 @@ app.get("/api/photos/:fn", function(req, res) {
 	return res.sendFile(path.join(__dirname, `photos/${req.params.fn}`))
 })
 
+// API: Get all journal entries
+app.get("/api/journal", function(req, res) {
+	res.download(path.join(__dirname, "journal.txt"))
+})
+
 // API: Get the nth to the mth journal entry
 app.get("/api/entries/:n/:m", function(req, res) {
 	fs.readFile('journal.txt', function(err, data) {
