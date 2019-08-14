@@ -69,11 +69,20 @@ input[name="photo"] {
 <script>
 
 var photoLabel = document.getElementById("photo-label")
+var photo = document.getElementById("photo")
+
 photoLabel.onkeydown = (e) => {
 	if (e.key === "Enter") {
 		e.preventDefault()
 		document.getElementById("photo").click()
+	}
+}
+
+photo.onchange = function(e) {
+	if (this.value.length > 0) {
 		photoLabel.textContent = "Change Photo"
+	} else {
+		photoLabel.textContent = "Upload Photo"
 	}
 }
 
