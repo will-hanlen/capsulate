@@ -162,7 +162,7 @@ function buildEntry(s) {
 	textEl.textContent = text
 
 	if (hasPhoto) {
-		entryEl.style.backgroundImage = `linear-gradient(#000000dd, #00000099), url(${photoUrl})`
+		entryEl.style.backgroundImage = `linear-gradient(#00000099, #00000077), url(${photoUrl})`
 		entryEl.style.cursor = "pointer"
 
 		entryEl.onmouseenter = (e) => {
@@ -176,7 +176,7 @@ function buildEntry(s) {
 		entryEl.onmouseleave = (e) => {
 			e.preventDefault()
 			e.stopPropagation()
-			entryEl.style.backgroundImage = `linear-gradient(#000000aa, #00000099), url(${photoUrl})`
+			entryEl.style.backgroundImage = `linear-gradient(#00000099, #00000077), url(${photoUrl})`
 			dateEl.style.visibility = "visible"
 			textEl.style.visibility = "visible"
 		}
