@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Random</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
-	<link rel="manifest" href="manifest.json">
+  <title>Random</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
 
 <style>
 
 #main {
-	width: 95%;
-	max-width: 700px;
-	margin: 2vw auto;
-	
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: space-around;
-	align-items: flex-start;
+  width: 95%;
+  max-width: 700px;
+  margin: 2vw auto;
+  
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
 .photo {
-	width: 100%;
-	margin-top: 8px;
-	margin-bottom: 8px;
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .entry {
-	width: 95%;
-	max-width: 700px;
-	margin-top: 35px;
+  width: 95%;
+  max-width: 700px;
+  margin-top: 35px;
 
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: center;
-	align-items: center;
-	user-select: none;
-	-moz-user-select: none;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  -moz-user-select: none;
 }
 
 .date {
-	display: block;
-	text-align: center;
-	visibility: visible;
-	font-weight: bold;
-	font-size: 20px;
+  display: block;
+  text-align: center;
+  visibility: visible;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .text {
-	padding: 0;
-	margin: 0;
-	display: block;
-	width: 90%;
-	text-align: center;
+  padding: 0;
+  margin: 0;
+  display: block;
+  width: 90%;
+  text-align: center;
 }
 
 
@@ -60,17 +60,17 @@
 </head>
 <body>
 
-	<nav>
-		<div class="max700">
-			<img id="logo" src="icon.png">
-			<div>
-				<a href="/journal">Journal</a>
-				<a href="/new">New Entry</a>
-			</div>
-		</div>
-	</nav>
+  <nav>
+    <div class="max700">
+      <img id="logo" src="icon.png">
+      <div>
+        <a href="/journal">Journal</a>
+        <a href="/new">New Entry</a>
+      </div>
+    </div>
+  </nav>
 
-	<div id="main"></div>
+  <div id="main"></div>
 
 <script>
 
@@ -78,53 +78,53 @@ var doc = document.getElementById("main")
 
 let xhr = new XMLHttpRequest()
 xhr.onreadystatechange = function() {
-	if (this.readyState == 4 && this.status == 200) {
-		let a = JSON.parse(xhr.responseText)
+  if (this.readyState == 4 && this.status == 200) {
+    let a = JSON.parse(xhr.responseText)
 
-		let randomIndex = Math.floor(Math.random()*(a.length-1))
-		buildEntry(a[randomIndex])
-	}
+    let randomIndex = Math.floor(Math.random()*(a.length-1))
+    buildEntry(a[randomIndex])
+  }
 }
 xhr.open("GET", `/api/entries/0/1000000000`, true)
 xhr.send()
 
 
 function buildEntry(s) {
-	s = s.split(":::")
+  s = s.split(":::")
 
-	let timestamp = parseInt(s[0])
-	let date = new Date(timestamp)
+  let timestamp = parseInt(s[0])
+  let date = new Date(timestamp)
 
-	let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-	let dateString = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
-	let hasPhoto = (s[1] === "true")
-	let photoUrl = `/api/photos/${timestamp}.jpg`
-	let text = s[2]
+  let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  let dateString = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
+  let hasPhoto = (s[1] === "true")
+  let photoUrl = `/api/photos/${timestamp}.jpg`
+  let text = s[2]
 
 
-	let entryEl = document.createElement("div")
-	entryEl.classList.add("entry")
+  let entryEl = document.createElement("div")
+  entryEl.classList.add("entry")
 
-	let dateEl = document.createElement("span")
-	dateEl.classList.add("date")
-	dateEl.textContent = dateString
+  let dateEl = document.createElement("span")
+  dateEl.classList.add("date")
+  dateEl.textContent = dateString
 
-	let photoEl = document.createElement("img")
-	photoEl.classList.add("photo")
-	if (hasPhoto) {
-		photoEl.src = `/api/photos/${timestamp}.jpg`
-	}
+  let photoEl = document.createElement("img")
+  photoEl.classList.add("photo")
+  if (hasPhoto) {
+    photoEl.src = `/api/photos/${timestamp}.jpg`
+  }
 
-	let textEl = document.createElement("p")
-	textEl.classList.add("text")
-	textEl.textContent = text
+  let textEl = document.createElement("p")
+  textEl.classList.add("text")
+  textEl.textContent = text
 
-	entryEl.appendChild(dateEl)
-	entryEl.appendChild(photoEl)
-	entryEl.appendChild(textEl)
+  entryEl.appendChild(dateEl)
+  entryEl.appendChild(photoEl)
+  entryEl.appendChild(textEl)
 
-	doc.appendChild(entryEl)
-	return entryEl
+  doc.appendChild(entryEl)
+  return entryEl
 }
 
 </script>

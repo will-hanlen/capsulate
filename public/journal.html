@@ -1,83 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Journal</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
-	<link rel="manifest" href="manifest.json">
+  <title>Journal</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
 
 <style>
 
 #main {
-	width: 95%;
-	max-width: 700px;
-	margin: 2vw auto;
-	
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: space-around;
-	align-items: stretch;
+  width: 95%;
+  max-width: 700px;
+  margin: 2vw auto;
+  
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: stretch;
 }
 
 .photo {
-	width: 100%;
+  width: 100%;
 }
 
 .entry {
-	width: 48%;
-	min-height: 200px;
-	margin-top: 25px;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-color: black;
+  width: 48%;
+  min-height: 200px;
+  margin-top: 25px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: black;
 
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: center;
-	align-items: center;
-	color: white;
-	user-select: none;
-	-moz-user-select: none;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  user-select: none;
+  -moz-user-select: none;
 }
 
 .date {
-	display: block;
-	text-align: center;
-	visibility: visible;
-	font-weight: bold;
-	margin-top: 25px;
+  display: block;
+  text-align: center;
+  visibility: visible;
+  font-weight: bold;
+  margin-top: 25px;
 }
 
 .text {
-	padding: 0;
-	margin: 0;
-	margin-bottom: 25px;
-	display: block;
-	width: 90%;
-	text-align: center;
-	visibility: visible;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 25px;
+  display: block;
+  width: 90%;
+  text-align: center;
+  visibility: visible;
 }
 
 .btn {
-	width: 300px;
-	margin: 100px auto;
-	display: block;
+  width: 300px;
+  margin: 100px auto;
+  display: block;
 }
 
 
 #full-image {
-	position: fixed;
-	z-index: 2;
-	top: 0;
-	right: 0;
-	width: 100vw;
-	height: 100vh;
-	background-color: #000000cc;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: contain;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000cc;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 
@@ -85,17 +85,12 @@
 </head>
 <body>
 
-	<nav>
-		<div class="max700">
-			<img id="logo" src="icon.png">
-			<div>
-				<a href="/new">New Entry</a>
-			</div>
-		</div>
-	</nav>
+  <nav>
+          <a href="/new">New Entry</a>
+  </nav>
 
-	<div id="main"></div>
-	<button id="load-more" class="btn" onclick="loadMoreEntries(10)">Load 10 more</button>
+  <div id="main"></div>
+  <button id="load-more" class="btn" onclick="loadMoreEntries(10)">Load 10 more</button>
 
 <script>
 
@@ -105,94 +100,94 @@ var already = 0
 loadMoreEntries(9)
 
 function loadMoreEntries(n) {
-	let xhr = new XMLHttpRequest()
-	xhr.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			let a = JSON.parse(xhr.responseText)
-			appendEntries(a)
-			if (a.length < n+1) {
-				document.getElementById("load-more").style.visibility = "hidden";
-			}
-		}
-	}
-	xhr.open("GET", `/api/entries/${already}/${already + n}`, true)
-	xhr.send()
-	already += (n + 1)
+  let xhr = new XMLHttpRequest()
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      let a = JSON.parse(xhr.responseText)
+      appendEntries(a)
+      if (a.length < n+1) {
+        document.getElementById("load-more").style.visibility = "hidden";
+      }
+    }
+  }
+  xhr.open("GET", `/api/entries/${already}/${already + n}`, true)
+  xhr.send()
+  already += (n + 1)
 }
 
 function appendEntries(data) {
-	for (let i=0; i<data.length; i++) {
-		if (data[i] != "")
-		doc.appendChild(buildEntry(data[i]))
-	}
+  for (let i=0; i<data.length; i++) {
+    if (data[i] != "")
+    doc.appendChild(buildEntry(data[i]))
+  }
 }
 
 function showFullImage(timestamp) {
-	let fullImage = document.createElement("div")
-	fullImage.id = "full-image"
-	fullImage.style.backgroundImage = `url(/api/photos/${timestamp}.jpg`
-	fullImage.style.cursor = "pointer"
-	document.body.appendChild(fullImage)
+  let fullImage = document.createElement("div")
+  fullImage.id = "full-image"
+  fullImage.style.backgroundImage = `url(/api/photos/${timestamp}.jpg`
+  fullImage.style.cursor = "pointer"
+  document.body.appendChild(fullImage)
 
-	fullImage.onclick = function() {
-		this.remove()
-	}
+  fullImage.onclick = function() {
+    this.remove()
+  }
 }
 
 function buildEntry(s) {
-	s = s.split(":::")
+  s = s.split(":::")
 
-	let timestamp = parseInt(s[0])
-	let date = new Date(timestamp)
+  let timestamp = parseInt(s[0])
+  let date = new Date(timestamp)
 
-	let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-	let dateString = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
-	let hasPhoto = (s[1] === "true")
-	let photoUrl = `/api/photos/${timestamp}.jpg`
-	let text = s[2]
+  let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  let dateString = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
+  let hasPhoto = (s[1] === "true")
+  let photoUrl = `/api/photos/${timestamp}.jpg`
+  let text = s[2]
 
-	let entryEl = document.createElement("div")
-	entryEl.classList.add("entry")
+  let entryEl = document.createElement("div")
+  entryEl.classList.add("entry")
 
-	let dateEl = document.createElement("span")
-	dateEl.classList.add("date")
-	dateEl.textContent = dateString
+  let dateEl = document.createElement("span")
+  dateEl.classList.add("date")
+  dateEl.textContent = dateString
 
-	let textEl = document.createElement("p")
-	textEl.classList.add("text")
-	textEl.textContent = text
+  let textEl = document.createElement("p")
+  textEl.classList.add("text")
+  textEl.textContent = text
 
-	if (hasPhoto) {
-		entryEl.style.backgroundImage = `linear-gradient(#00000099, #00000077), url(${photoUrl})`
-		entryEl.style.cursor = "pointer"
+  if (hasPhoto) {
+    entryEl.style.backgroundImage = `linear-gradient(#00000099, #00000077), url(${photoUrl})`
+    entryEl.style.cursor = "pointer"
 
-		entryEl.onmouseenter = (e) => {
-			e.preventDefault()
-			e.stopPropagation()
-			entryEl.style.backgroundImage = `url(${photoUrl})`
-			dateEl.style.visibility = "hidden"
-			textEl.style.visibility = "hidden"
-		}
+    entryEl.onmouseenter = (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+      entryEl.style.backgroundImage = `url(${photoUrl})`
+      dateEl.style.visibility = "hidden"
+      textEl.style.visibility = "hidden"
+    }
 
-		entryEl.onmouseleave = (e) => {
-			e.preventDefault()
-			e.stopPropagation()
-			entryEl.style.backgroundImage = `linear-gradient(#00000099, #00000077), url(${photoUrl})`
-			dateEl.style.visibility = "visible"
-			textEl.style.visibility = "visible"
-		}
+    entryEl.onmouseleave = (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+      entryEl.style.backgroundImage = `linear-gradient(#00000099, #00000077), url(${photoUrl})`
+      dateEl.style.visibility = "visible"
+      textEl.style.visibility = "visible"
+    }
 
-		entryEl.onclick = (e) => {
-			e.preventDefault()
-			e.stopPropagation()
-			showFullImage(timestamp)
-		}
-	}
+    entryEl.onclick = (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+      showFullImage(timestamp)
+    }
+  }
 
-	entryEl.appendChild(dateEl)
-	entryEl.appendChild(textEl)
+  entryEl.appendChild(dateEl)
+  entryEl.appendChild(textEl)
 
-	return entryEl
+  return entryEl
 }
 
 </script>
