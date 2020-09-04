@@ -70,6 +70,13 @@ input[name="photo"] {
 
 var photoLabel = document.getElementById("photo-label")
 var photo = document.getElementById("photo")
+var textArea = document.getElementById("text")
+
+text.onkeydown = (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault()
+  }
+}
 
 photoLabel.onkeydown = (e) => {
 	if (e.key === "Enter") {
