@@ -2,7 +2,6 @@ var express = require('express')
 var path = require('path')
 var fs = require('fs')
 var fileUpload = require('express-fileupload')
-var favicon = require('serve-favicon')
 
 // Init app
 var app = express()
@@ -12,9 +11,6 @@ app.use(fileUpload())
 
 // Serve static site
 app.use(express.static(path.join(__dirname, "public"), { index: "new.html", extensions: ['html'] }))
-
-// Serve favicon
-app.use(favicon(path.join(__dirname, "public", "icon.png")))
 
 // API: Get a single photo
 app.get("/api/photos/:fn", function(req, res) {

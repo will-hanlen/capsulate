@@ -1,8 +1,19 @@
+/* Global Variables */
+
+html {
+  --fg: #111111;
+  --bg: #f7f5ff;
+  --ac: darkblue;
+}
+
+/* Structure */
+
 body {
   padding: 0;
   margin: 0;
 
   font-family: Helvetica, sans-serif;
+  font-size: 18px;
 }
 
 nav {
@@ -10,48 +21,41 @@ nav {
   height: 60px;
   box-shadow: 0 0 4px 4px #00000033;
 
-  font-size: 16px;
-}
 
-.max700 {
-  width: 100%;
-  height: 100%;
-  max-width: 700px;
-  margin: auto;
-  
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 
-nav a {
-  color: darkblue;
+main {
+  width: 90%;
+  max-width: 700px;
+  margin: 2vw auto;
+}
+
+/* Shared Components */
+
+a {
+  color: var(--ac);
   text-decoration: none;
   font-weight: bold;
-  margin: 0 15px 0 0;
+  margin: 15px;
   outline: none;
 }
 
-nav a:hover {
+a:hover {
   text-decoration: underline;
 }
 
-nav a:focus {
+a:focus {
   text-decoration: underline;
-}
-
-#logo {
-  width: 26px;
-  height: 26px;
-  display: block;
-  margin-left: 15px;
-  user-select: none;
-  -moz-user-select: none;
 }
 
 .btn {
-  width: 70%;
+  width: 300px;
+  margin: auto;
+  display: block;
   background-color: inherit;
   border: 2px solid darkblue;
   box-sizing: border-box;
@@ -75,4 +79,150 @@ nav a:focus {
 
 .btn:hover {
   border: 2px dashed darkblue;
+}
+
+
+/* Journal Page */
+#journal {
+  width: 100%;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+.journal-photo {
+  width: 100%;
+}
+
+.journal-entry {
+  width: 48%;
+  min-height: 200px;
+  margin-top: 25px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: black;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  user-select: none;
+  -moz-user-select: none;
+}
+
+.date {
+  display: block;
+  text-align: center;
+  visibility: visible;
+  font-weight: bold;
+  margin-top: 25px;
+}
+
+.text {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 25px;
+  display: block;
+  width: 90%;
+  text-align: center;
+  visibility: visible;
+}
+
+
+#full-image {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 80vh;
+  background-color: #000000cc;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* New Entry Page */
+#entry-form {
+  width: 100%;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#text {
+  font-family: inherit;
+  width: 100%;
+  margin: auto;
+  height: 300px;
+  padding: 15px;
+  color: var(--ac);
+  outline: none;
+  border: none;
+  resize: none;
+  box-sizing: border-box;
+  border: 2px solid darkblue;
+  border-radius: 5px;
+}
+
+#text:focus {
+  border: 2px dashed var(--ac);
+}
+
+input[name="photo"] {
+  position: absolute;
+  visibility: hidden;
+}
+
+/* Random Entry Page */
+#random {
+  width: 95%;
+  max-width: 700px;
+  margin: 2vw auto;
+  
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.random-photo {
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.random-entry {
+  width: 95%;
+  max-width: 700px;
+  margin-top: 35px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  -moz-user-select: none;
+}
+
+.date {
+  display: block;
+  text-align: center;
+  visibility: visible;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.text {
+  padding: 0;
+  margin: 0;
+  display: block;
+  width: 90%;
+  text-align: center;
 }
