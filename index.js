@@ -59,7 +59,7 @@ app.post("/api/entries",  function(req, res) {
     if (err) throw err;
   });
 
-  res.redirect("/random")
+  res.redirect("/journal")
 })
 
 // Start server
