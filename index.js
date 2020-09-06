@@ -70,6 +70,38 @@ app.post("/api/entries",  function(req, res) {
   res.redirect("/journal")
 })
 
+// API: delete a post
+app.get('/api/delete/:timestamp', function(req, res) {
+
+  // Read the journal file
+  let entries = JSON.parse(fs.readFileSync("db/journal.json", {encoding: "utf8"}))
+
+  // Get the timestamp from the request
+  let timestamp = parseInt(req.params.timestamp)
+
+  // Find the index of the entry to delete by matching the timestamp
+  let indexToDelete;
+  for (let i=0; i<entries.entries.length; i++) {
+    let entry = entries.entries[i]
+
+    if (timestamp === entry.timestamp) {
+      indexToDelete = i
+    }
+  }
+
+  // Remove the deleted entry from the journal object
+  if (typeof indexToDelete !== 'undefined') {
+    entries.entries.splice(indexToDelete, 1)
+  }
+
+  // Rewrite the journal file with the new journal object
+  fs.writeFileSync('db/journal.json', JSON.stringify(entries))
+
+  // Refresh the page
+  res.redirect("/journal")
+
+})
+
 // Start server
 app.listen(1998, function(err) {
   if (err) throw err

@@ -81,6 +81,14 @@
     dateEl.classList.add("date")
     dateEl.textContent = dateString
 
+    let deleteBtn = document.createElement("button")
+    deleteBtn.textContent = "X"
+    deleteBtn.classList.add("delete-btn")
+    deleteBtn.onclick = function (e) {
+      deleteEntry(this, s.timestamp)
+        e.stopPropagation()
+    }
+
     let textEl = document.createElement("p")
     textEl.classList.add("text")
     textEl.textContent = text
@@ -114,8 +122,26 @@
 
     entryEl.appendChild(dateEl)
     entryEl.appendChild(textEl)
+    entryEl.appendChild(deleteBtn)
 
     return entryEl
+  }
+
+  /* Deletes an entry from the database and then removes it from the DOM */
+  function deleteEntry(element, timestamp) {
+
+    // Start a new AJAX request
+    let xhr = new XMLHttpRequest()
+    xhr.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        // When the request come back correctly, remove the entry from the DOM
+        element.parentElement.remove()
+      }
+    }
+
+    // Call the API to remove the entry
+    xhr.open("GET", `/api/delete/${timestamp}`, true)
+    xhr.send()
   }
 
   </script>
