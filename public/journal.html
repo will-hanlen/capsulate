@@ -130,6 +130,10 @@
   /* Deletes an entry from the database and then removes it from the DOM */
   function deleteEntry(element, timestamp) {
 
+    if (!window.confirm("Are you sure you want to delete this entry?")) {
+      return
+    }
+
     // Start a new AJAX request
     let xhr = new XMLHttpRequest()
     xhr.onreadystatechange = function() {
