@@ -17,3 +17,9 @@ I need to clean up the code base.
 First, I consolidated css code into one file.
 Then I got rid of the logo and used a simpler navigation.
 
+## Change backend storage format
+
+5 Sept 2020
+
+When I first built the app it made sense to store the journal entries in plaintext and parse the file manually. I plan to move the backend to MongoDB in the future so that no longer makes sense. I changed the storage method to JSON because that will make the switch to MongoDB easier.
+
