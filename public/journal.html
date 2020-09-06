@@ -17,6 +17,8 @@
 
   <main>
 
+    <p id="no-entries-placeholder">There are no journal entries yet.<br \> Upload one from the <a href="/new">New Entry</a> page.</p>
+
     <div id="journal"></div>
 
     <button id="load-more" class="btn" onclick="loadMoreEntries(10)">Load 10 more</button>
@@ -34,16 +36,21 @@
     let xhr = new XMLHttpRequest()
     xhr.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
+
         let a = JSON.parse(xhr.responseText)
         appendEntries(a)
-        if (a.length < n+1) {
+
+        checkIfEntriesExist()
+
+        if (a.length < n) {
           document.getElementById("load-more").style.visibility = "hidden";
         }
+
+        already += a.length
       }
     }
     xhr.open("GET", `/api/entries/${already}/${already + n}`, true)
     xhr.send()
-    already += (n + 1)
   }
 
   function appendEntries(data) {
@@ -138,14 +145,31 @@
     let xhr = new XMLHttpRequest()
     xhr.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
+
         // When the request come back correctly, remove the entry from the DOM
         element.parentElement.remove()
+
+        // If most recent post was the only post, show the "no entries exist" text
+        checkIfEntriesExist()
       }
     }
 
     // Call the API to remove the entry
     xhr.open("GET", `/api/delete/${timestamp}`, true)
     xhr.send()
+  }
+
+  /* This function decides whether or not to display the "no entries exits" text */
+  function checkIfEntriesExist() {
+    let entriesCount = document.getElementById("journal").childElementCount
+    let placeholderEl = document.getElementById("no-entries-placeholder")
+
+    if (entriesCount > 0) {
+      placeholderEl.hidden = true;
+    }
+    else {
+      placeholderEl.hidden = false;
+    }
   }
 
   </script>
