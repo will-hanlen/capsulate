@@ -14,21 +14,25 @@ app.use(express.static(path.join(__dirname, "public"), { index: "new.html", exte
 
 // API: Get a single photo
 app.get("/api/photos/:fn", function(req, res) {
-  return res.sendFile(path.join(__dirname, `photos/${req.params.fn}`))
+  return res.sendFile(path.join(__dirname, `db/photos/${req.params.fn}`))
 })
 
 // API: Get all journal entries
 app.get("/api/journal", function(req, res) {
-  res.download(path.join(__dirname, "journal.txt"))
+  let entries = JSON.parse(fs.readFileSync("db/journal.json", {encoding: "utf8"}))
+
+  res.json(entries)
 })
 
 // API: Get the nth to the mth journal entry
 app.get("/api/entries/:n/:m", function(req, res) {
-  fs.readFile('journal.txt', function(err, data) {
+  fs.readFile('db/journal.json', function(err, data) {
     if (err) throw err
-    entries = data.toString().split("\n")
+    entries = JSON.parse(data).entries
+
     let n = parseInt(req.params.n)
     let m = parseInt(req.params.m)
+
     if (n <= m && m < entries.length) {
       return res.send(entries.slice(n, m+1))
     } else {
@@ -43,21 +47,25 @@ app.post("/api/entries",  function(req, res) {
   let hasPhoto = false
 
   if (req.files && Object.keys(req.files).length > 0) {
-    req.files.photo.mv(path.join(__dirname, `/photos/${timestamp}.jpg`))
+    req.files.photo.mv(path.join(__dirname, `/db/photos/${timestamp}.jpg`))
     hasPhoto = true
   }
 
-  const data = fs.readFileSync('journal.txt')
-  const fd = fs.openSync('journal.txt', 'w+')
-  let entryText = `${timestamp}:::${hasPhoto}:::${req.body.text}\n`
-  const insert = Buffer.alloc(entryText.length)
-  insert.write(entryText)
+  let entryText = req.body.text
 
-  fs.writeSync(fd, insert, 0, insert.length, 0)
-  fs.writeSync(fd, data, 0, data.length, insert.length)
-  fs.close(fd, (err) => {
-    if (err) throw err;
-  });
+  let entryObj = {
+    timestamp: timestamp,
+    hasPhoto: hasPhoto,
+    entryText: entryText
+  }
+
+  let previousJournal = JSON.parse(fs.readFileSync('db/journal.json', {encoding: 'utf8'}))
+
+  previousJournal.entries.push(entryObj)
+
+  let newJournal = JSON.stringify(previousJournal)
+
+  fs.writeFile(`db/journal.json`, newJournal, function(err) {if (err) throw err});
 
   res.redirect("/journal")
 })
@@ -66,11 +74,16 @@ app.post("/api/entries",  function(req, res) {
 app.listen(1998, function(err) {
   if (err) throw err
 
-  if (!fs.existsSync(path.join(__dirname, "photos/"))) {
-    fs.mkdir(path.join(__dirname, "photos/"), function(err) {if (err) throw err})
+  if (!fs.existsSync(path.join(__dirname, "db/"))) {
+    fs.mkdir(path.join(__dirname, "db/"), function(err) {if (err) throw err})
   }
 
-  if (!fs.existsSync(path.join(__dirname, "journal.txt"))) {
-    fs.closeSync(fs.openSync(path.join(__dirname, "journal.txt"), "w"))
+  if (!fs.existsSync(path.join(__dirname, "db/photos/"))) {
+    fs.mkdir(path.join(__dirname, "db/photos/"), function(err) {if (err) throw err})
+  }
+
+  if (!fs.existsSync(path.join(__dirname, "/db/journal.json"))) {
+    fs.closeSync(fs.openSync(path.join(__dirname, "/db/journal.json"), "w"))
+    fs.appendFile("db/journal.json", "{\"entries\": []}", function (err) {if (err) throw err})
   }
 })

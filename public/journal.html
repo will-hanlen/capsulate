@@ -48,7 +48,6 @@
 
   function appendEntries(data) {
     for (let i=0; i<data.length; i++) {
-      if (data[i] != "")
       doc.appendChild(buildEntry(data[i]))
     }
   }
@@ -66,16 +65,14 @@
   }
 
   function buildEntry(s) {
-    s = s.split(":::")
 
-    let timestamp = parseInt(s[0])
-    let date = new Date(timestamp)
+    let date = new Date(s.timestamp)
 
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     let dateString = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
-    let hasPhoto = (s[1] === "true")
-    let photoUrl = `/api/photos/${timestamp}.jpg`
-    let text = s[2]
+    let hasPhoto = (s.hasPhoto)
+    let photoUrl = `/api/photos/${s.timestamp}.jpg`
+    let text = s.entryText
 
     let entryEl = document.createElement("div")
     entryEl.classList.add("journal-entry")
@@ -111,7 +108,7 @@
       entryEl.onclick = (e) => {
         e.preventDefault()
         e.stopPropagation()
-        showFullImage(timestamp)
+        showFullImage(s.timestamp)
       }
     }
 
