@@ -23,3 +23,29 @@ Then I got rid of the logo and used a simpler navigation.
 
 When I first built the app it made sense to store the journal entries in plaintext and parse the file manually. I plan to move the backend to MongoDB in the future so that no longer makes sense. I changed the storage method to JSON because that will make the switch to MongoDB easier.
 
+## Delete entries
+
+6 Sept 2020
+
+Entries now have an "X" button in the top right corner that when clicked will delete that post. The API call sends the timestamp to the server so that the server can search through and delete the correct one from the "database." In the future, when the database is real and not just local files, the API call will be made directly to the database with the unique ID and will be more efficient.
+
+A second commit adds a confirm popup forcing the user to confirm that they want to delete the post.
+
+## "No entries yet" text
+
+6 Sept 2020
+
+If there are no entries in the journal and the user is on the journal page, a message will be displayed directing the user to the new entries page. If there is one post and that post is deleted, the same message is displayed.
+
+## Randomized prompts
+
+7 Sept 2020
+
+On the new entries page, the placeholder text in the text area is now a randomized journal prompt such as "What was one thing that gave you joy today?" or "What converstations did you have today?" This is just to make the app a bit less boring... hopefully.
+
+## Date picker
+
+7 Sept 2020
+
+The ideal use case of this app is that every post has a photo. The whole value of a photo journal is to look back and reminisce, but that is hard to do if you just started using the app and only have 1 or 2 posts. I added a date picker to the new entries page so that you could upload posts from past dates and hopefully give the new users a way to not start from scratch.
+
