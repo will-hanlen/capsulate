@@ -20,6 +20,11 @@
     <form id="entry-form" method="POST" enctype="multipart/form-data" action="/api/entries">
       <textarea name="text" id="text" placeholder="In twenty years, what will I want to remember about today?" autocomplete="off" maxlength="200" required autofocus></textarea>
 
+      <div id="date-picker">
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" value="1969-04-20" required>
+      </div>
+
       <input name="photo" id="photo" type="file" accept="image/*">
       <label for="photo" id="photo-label" class="btn" tabindex="0">Upload Photo</label>
 
@@ -69,6 +74,11 @@
 
     // Change the placeholder to a random prompt
     textArea.placeholder = prompts[Math.floor(Math.random() * prompts.length)]
+
+    // Change date-picker default date to today
+    let date = document.getElementById("date")
+    let now = new Date(Date.now())
+    date.valueAsNumber = Date.now()
 
   </script>
 
