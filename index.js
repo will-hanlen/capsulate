@@ -43,7 +43,11 @@ app.get("/api/entries/:n/:m", function(req, res) {
 
 // API: Create new post
 app.post("/api/entries",  function(req, res) {
-  let timestamp = Date.now()
+
+  // Convert given timestamp string to UNIX epoch
+  let timestampObject = new Date(req.body.date)
+
+  let timestamp = timestampObject.getTime()
   let hasPhoto = false
 
   if (req.files && Object.keys(req.files).length > 0) {

@@ -181,6 +181,29 @@ a:focus {
   border-radius: 5px;
 }
 
+#date-picker {
+  margin-top: 20px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#date-picker label {
+  margin-right: 10px;
+  line-height: 30px;
+  margin-top: 3px;
+  color: var(--ac);
+  font-weight: bold;
+}
+
+#date-picker input {
+  border: 2px solid var(--ac);
+  border-radius: 5px;
+  padding: 5px;
+  padding-left: 21px;
+}
+
 #text:focus {
   border: 2px dashed var(--ac);
 }
