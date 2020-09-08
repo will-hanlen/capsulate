@@ -55,6 +55,21 @@
       }
     }
 
+    // A list of prompts
+    var prompts = [
+      "In twenty years, what will I want to remember about today?",
+      "What was one fun about today?",
+      "What conversations did you have today?",
+      "What was one unique thing about today?",
+      "What brought you joy today?",
+      "What inspired you today?",
+      "What would you change about today if you had the choice?",
+      "Was today a good day?"
+    ]
+
+    // Change the placeholder to a random prompt
+    textArea.placeholder = prompts[Math.floor(Math.random() * prompts.length)]
+
   </script>
 
 </body>
