@@ -49,3 +49,9 @@ On the new entries page, the placeholder text in the text area is now a randomiz
 
 The ideal use case of this app is that every post has a photo. The whole value of a photo journal is to look back and reminisce, but that is hard to do if you just started using the app and only have 1 or 2 posts. I added a date picker to the new entries page so that you could upload posts from past dates and hopefully give the new users a way to not start from scratch.
 
+## Switching to a React front end
+
+9 Sept 2020
+
+The front end is getting a bit complex and building components with document.createElement is getting tedious. I think it's time to use a framework. I am currently learning React to make the switch. After that I will use Next.js to upload the site to a live domain.
+
