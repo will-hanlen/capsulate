@@ -28,13 +28,26 @@ const Journal = (props) => {
 }
 
 export async function getStaticProps() {
-  const res = await fetch('https://capsulate.vercel.app/api/journal')
-  const entries = await res.json()
+  const res = await fetch('https://capsulate.vercel.app/api/journal').then(function (response) {
+    return response.json();
+  }).catch(function (err) {
+    console.warn('Could not find a post');
+  });
 
+
+  if(res) {
+    const entries = await res.json()
+
+    return {
+      props: {
+        entries,
+      },
+    }
+  }
   return {
     props: {
-      entries,
-    },
+      entries: []
+    }
   }
 }
 
