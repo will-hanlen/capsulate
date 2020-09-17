@@ -1,4 +1,5 @@
 Capsulate is a simple photo journaling web app.
+[Demo here](https://capsulate.vercel.app).
 
 There is no front-end framework - everything is done with direct DOM manipulation and AJAX. The backend is an express node server.
 
