@@ -106,7 +106,6 @@ label {
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-bottom: 2rem;
 }
 
 .vertical-flex *:not([hidden]):first-child {
@@ -137,4 +136,10 @@ label {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+}
+
+.journal-flex .card {
+  flex-basis: 30%;
+  flex-grow: 1;
+  margin: 1rem;
 }

@@ -2,7 +2,7 @@ const FullContainer = (props) => {
 
   return (
     <div>
-      <main>
+      <main className="journal-flex">
         {props.children}
       </main>
 
@@ -12,6 +12,10 @@ const FullContainer = (props) => {
           width: 90%;
           max-width: 1800px;
           margin: 2rem auto;
+          display: flex;
+          flex-flow: row wrap;
+          justify-content: flex-start;
+          align-items: stretch;
         }
 
       `}</style>
