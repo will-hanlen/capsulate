@@ -2,7 +2,6 @@ import Nav from '../components/nav'
 import FullContainer from '../components/fullContainer'
 import Entry from '../components/entry'
 import Head from 'next/head'
-import { server } from '../config'
 
 const Journal = (props) => {
 
@@ -29,7 +28,7 @@ const Journal = (props) => {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`${server}/api/journal`)
+  const res = await fetch('https://capsulate.vercel.app/api/journal')
   const entries = await res.json()
 
   return {
