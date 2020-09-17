@@ -1,3 +1,4 @@
+
 # Progress Log
 
 This document exists to explain the development process of this web app.
@@ -66,4 +67,10 @@ Instead of using a normal React build process I decided to complicate things wit
 17 Sept 2020
 
 The site can now be demoed live [here.](https://capsulate.vercel.app)
+
+## Journal API
+
+17 Sept 2020
+
+The journal is created by reading data from an API. The api is also hosted within nextjs. The API isn't hookedup to a database so it is just reading from a variable. This means you can't do any CRUD operations except read.
 
