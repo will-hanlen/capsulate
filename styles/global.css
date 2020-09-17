@@ -7,7 +7,7 @@ html {
 
   --container-width: 800px;
 
-  --radius: 0.2rem;
+  --radius: 0;
 
   --shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
     0 1px 5px 0 rgba(0, 0, 0, 0.12),
@@ -35,7 +35,7 @@ body {
   font-family: monospace;
   line-height: 1.4rem;
   letter-spacing: 0.1em;
-  background-color: var(--background);
+  background-image: url("wood.png");
   color: var(--text);
 }
 
@@ -73,8 +73,9 @@ label {
 
 .card {
   color: var(--text);
+  text-shadow: 0 0 1px #00000055;
   text-decoration: none;
-  background: var(--paper);
+  background-image: url('paper.png');
   border: none;
   box-shadow: var(--shadow);
   border-radius: var(--radius);
@@ -84,7 +85,7 @@ label {
 }
 
 .card:hover, .card:focus {
-  box-shadow: var(--active-shadow)
+  box-shadow: var(--active-shadow);
 }
 
 .card:disabled {
@@ -99,6 +100,13 @@ label {
   width: 100%;
   border: 0.15rem solid #ccc;
   border-radius: var(--radius);
+}
+
+.entry-flex {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .vertical-flex {
@@ -119,7 +127,7 @@ label {
 .horizontal-flex {
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: flex-start;
 }
 
@@ -127,8 +135,28 @@ label {
   margin-left: 0;
 }
 
+.r0 {
+  transform: rotate(-1deg);
+}
+.r1 {
+  transform: rotate(1deg);
+}
+.r2 {
+  transform: rotate(-1.25deg);
+}
+.r3 {
+  transform: rotate(1.25deg);
+}
+.r4 {
+  transform: rotate(-1.5deg);
+}
+.r5 {
+  transform: rotate(1.5deg);
+}
+
 .horizontal-flex .card {
   margin-left: 1.5rem;
+  margin-top: 0.5rem;
 }
 
 .text-flex {
@@ -140,6 +168,7 @@ label {
 
 .journal-flex .card {
   flex-basis: 30%;
+  min-width: 200px;
   flex-grow: 1;
   margin: 1rem;
 }

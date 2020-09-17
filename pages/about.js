@@ -14,10 +14,10 @@ const About = () => {
       <Nav />
 
       <Container>
-        <div className="text-flex">
+        <div className="text-flex card r2">
           <p>Capsulate is a simple photo journaling app.</p>
           <p>It is being built as a portfolio project.</p>
-          <a className="card" href="https://github.com/will-hanlen/capsulate">Github Source Code</a>
+          <a className="card r4" href="https://github.com/will-hanlen/capsulate">Github Source Code</a>
         </div>
       </Container>
     </>

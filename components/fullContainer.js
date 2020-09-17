@@ -15,7 +15,7 @@ const FullContainer = (props) => {
           display: flex;
           flex-flow: row wrap;
           justify-content: flex-start;
-          align-items: stretch;
+          align-items: center;
         }
 
       `}</style>

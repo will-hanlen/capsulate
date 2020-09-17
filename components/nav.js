@@ -11,16 +11,14 @@ class Nav extends React.Component {
     return (
       <>
         <nav className="horizontal-flex">
-          <Link href="/"><a className="card">New Entry</a></Link>
-          <Link href="/journal"><a className="card">Journal</a></Link>
-          <Link href="/about"><a className="card">About</a></Link>
+          <Link href="/"><a className="card r0">New Entry</a></Link>
+          <Link href="/journal"><a className="card r1">Journal</a></Link>
+          <Link href="/about"><a className="card r2">About</a></Link>
         </nav>
 
         <style jsx>{`
           nav {
             padding: 1rem;
-            box-shadow: var(--shadow);
-            background: var(--nav);
           }
         `}</style>
       </>

@@ -42,15 +42,16 @@ class NewEntry extends React.Component {
       <>
           <form className="vertical-flex" onSubmit={this.handleSubmit}>
 
-              <img className="photoCard" hidden={this.state.imagePreviewHidden} src={this.state.imagePreviewSource} />
+              <img className="photoCard r0" hidden={this.state.imagePreviewHidden} src={this.state.imagePreviewSource} />
 
-              <label tabIndex="0" className="card" htmlFor="file">{this.state.imageButtonPrompt}</label>
+              <label tabIndex="0" className="card r4" htmlFor="file">{this.state.imageButtonPrompt}</label>
               <input id="file" type="file" onChange={this.handlePhotoChange}/>
 
 
-              <textarea className="card" id="text-area" required autoFocus placeholder="Write your entry here..." onChange={this.handleTextChange} tabIndex="0" autoFocus />
-              <input className="card" type="date" required value={this.state.date} onChange={this.handleDateChange}/>
-              <input className="card" id="submit" type="submit" value="Upload"/>
+              <textarea className="card r3" id="text-area" required autoFocus placeholder="Write your entry here..." onChange={this.handleTextChange} tabIndex="0" autoFocus />
+
+              <input className="card r2" type="date" required value={this.state.date} onChange={this.handleDateChange}/>
+              <input className="card r0" id="submit" type="submit" value="Upload"/>
 
           </form>
 
