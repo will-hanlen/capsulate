@@ -55,3 +55,9 @@ The ideal use case of this app is that every post has a photo. The whole value o
 
 The front end is getting a bit complex and building components with document.createElement is getting tedious. I think it's time to use a framework. I am currently learning React to make the switch. After that I will use Next.js to upload the site to a live domain.
 
+## NextJS
+
+10-17 Sept 2020
+
+Instead of using a normal React build process I decided to complicate things with a server rendered React app through NextJS. This is cool and in the end will make things simpler I think. It took some setting up but I really like how it structures code. It also allows easy publishing so that a demo of the project can be live on the internet with minimal work. This happens through a service through Vercel which is free for small projects like this.
+
