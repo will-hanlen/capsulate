@@ -9,8 +9,11 @@ class Home extends React.Component {
       <>
         <Head>
           <title>Capsulate</title>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
+
         <Nav />
+
         <Container>
           <NewEntry />
         </Container>

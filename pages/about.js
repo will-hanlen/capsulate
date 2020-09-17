@@ -1,18 +1,25 @@
 import Nav from '../components/nav'
 import Container from '../components/container'
+import Head from 'next/head'
 
 const About = () => {
 
   return (
     <>
-    <Nav />
-    <Container>
-      <div className="text-flex">
-        <p>Capsulate is a simple photo journaling app.</p>
-        <p>It is being built as a portfolio project.</p>
-        <a className="card" href="https://github.com/will-hanlen/capsulate">Github Source Code</a>
-      </div>
-    </Container>
+      <Head>
+        <title>About</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+
+      <Nav />
+
+      <Container>
+        <div className="text-flex">
+          <p>Capsulate is a simple photo journaling app.</p>
+          <p>It is being built as a portfolio project.</p>
+          <a className="card" href="https://github.com/will-hanlen/capsulate">Github Source Code</a>
+        </div>
+      </Container>
     </>
   )
 
