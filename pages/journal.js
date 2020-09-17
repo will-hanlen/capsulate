@@ -18,6 +18,7 @@ function Journal(props) {
 
 
       <FullContainer>
+        <Entry date="2020-02-02" text="NOTE: These entries are pulled in from an API that reads from a static variable. There is no database yet." />
         {props.entries.map( entry => {
           return (
             <Entry key={entry.id} date={entry.date} text={entry.text} photo={entry.photo} />
