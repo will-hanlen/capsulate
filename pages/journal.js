@@ -2,8 +2,10 @@ import Nav from '../components/nav'
 import FullContainer from '../components/fullContainer'
 import Entry from '../components/entry'
 import Head from 'next/head'
+import path from 'path'
+import { server } from '../config'
 
-const Journal = (props) => {
+function Journal(props) {
 
   return (
     <>
@@ -27,28 +29,12 @@ const Journal = (props) => {
 
 }
 
-export async function getStaticProps() {
-  const res = await fetch('https://capsulate.vercel.app/api/journal').then(function (response) {
-    return response.json();
-  }).catch(function (err) {
-    console.warn('Could not find a post');
-  });
 
+export async function getServerSideProps() {
+  const res = await fetch(`${server}/api/journal`)
+  const entries = await res.json()
 
-  if(res) {
-    const entries = await res.json()
-
-    return {
-      props: {
-        entries,
-      },
-    }
-  }
-  return {
-    props: {
-      entries: []
-    }
-  }
+  return { props: { entries } }
 }
 
 export default Journal
