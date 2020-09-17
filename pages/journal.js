@@ -7,6 +7,9 @@ const Journal = () => {
     <>
     <Nav />
       <FullContainer>
+        <div className="text-flex">
+          <p>In the works</p>
+        </div>
       </FullContainer>
     </>
   )
