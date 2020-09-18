@@ -20,8 +20,7 @@ const About = () => {
 
       <main>
         <div className="card r2">
-          <p>Capsulate is a simple photo journaling app.</p>
-          <p>It is being built as a portfolio project.</p>
+          <p>Capsulate is a simple photo journaling app being built for <a href="https://www.linkedin.com/in/will-hanlen/">Will Hanlen's</a> portfolio.</p>
         </div>
         <a className="card actionable r4" href="https://github.com/will-hanlen/capsulate">Github Source Code</a>
       </main>
