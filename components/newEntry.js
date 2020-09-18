@@ -32,7 +32,6 @@ class NewEntry extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    console.log(this.state)
     alert("This React form doesn't upload to anywhere yet. There is no database. However, state is handled by this React form in the way that it should be for a production application.")
   }
 
