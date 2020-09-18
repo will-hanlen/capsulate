@@ -1,5 +1,4 @@
 import Nav from '../components/nav'
-import Container from '../components/container'
 import NewEntry from '../components/newEntry'
 import Head from 'next/head'
 
@@ -14,9 +13,7 @@ class Home extends React.Component {
 
         <Nav />
 
-        <Container>
-          <NewEntry />
-        </Container>
+        <NewEntry />
       </>
     )
   }

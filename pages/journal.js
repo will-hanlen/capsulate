@@ -1,8 +1,6 @@
 import Nav from '../components/nav'
-import FullContainer from '../components/fullContainer'
-import Entry from '../components/entry'
+import JournalContainer from '../components/journalContainer'
 import Head from 'next/head'
-import path from 'path'
 import { server } from '../config'
 
 function Journal(props) {
@@ -17,19 +15,11 @@ function Journal(props) {
       <Nav />
 
 
-      <FullContainer>
-        <Entry date="2020-02-02" text="NOTE: These entries are pulled in from an API that reads from a static variable. There is no database yet." />
-        {props.entries.map( entry => {
-          return (
-            <Entry key={entry.id} date={entry.date} text={entry.text} photo={entry.photo} />
-          )
-        })}
-      </FullContainer>
+      <JournalContainer entries={props.entries}/>
     </>
   )
 
 }
-
 
 export async function getServerSideProps() {
   const res = await fetch(`${server}/api/journal`)
