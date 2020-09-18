@@ -40,25 +40,46 @@ class NewEntry extends React.Component {
 
     return (
       <>
-          <form className="vertical-flex" onSubmit={this.handleSubmit}>
+          <main>
+          <form onSubmit={this.handleSubmit}>
 
-              <img className="photoCard r0" hidden={this.state.imagePreviewHidden} src={this.state.imagePreviewSource} />
+              <img className="card photoCard r1" hidden={this.state.imagePreviewHidden} src={this.state.imagePreviewSource} />
 
-              <label tabIndex="0" className="card r4" htmlFor="file">{this.state.imageButtonPrompt}</label>
+              <label tabIndex="0" className="card actionable r4" htmlFor="file">{this.state.imageButtonPrompt}</label>
               <input id="file" type="file" onChange={this.handlePhotoChange}/>
 
 
-              <textarea className="card r3" id="text-area" required autoFocus placeholder="Write your entry here..." onChange={this.handleTextChange} tabIndex="0" autoFocus />
+              <textarea className="card actionable r3" id="text-area" required autoFocus placeholder="Write your entry here..." onChange={this.handleTextChange} tabIndex="0" autoFocus />
 
-              <input className="card r2" type="date" required value={this.state.date} onChange={this.handleDateChange}/>
-              <input className="card r0" id="submit" type="submit" value="Upload"/>
+              <input className="card actionable r2" type="date" required value={this.state.date} onChange={this.handleDateChange}/>
+              <input className="card actionable r0" id="submit" type="submit" value="Upload"/>
 
           </form>
+          </main>
 
 
         <style jsx>{`
+
+          main {
+            width: 90%;
+            max-width: 700px;
+            margin: 2rem auto;
+          }
+
           form {
             width: 100%;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+          }
+
+          form *:not([hidden]):first-child {
+            margin-top: 0;
+          }
+
+          form *:not([hidden]) {
+            margin-top: 1.5rem;
           }
 
           textarea {
