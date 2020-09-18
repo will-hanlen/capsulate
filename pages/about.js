@@ -3,6 +3,12 @@ import Head from 'next/head'
 
 const About = () => {
 
+  let navLinks = [
+    { href: "/", name: "New Entry" },
+    { href: "/journal", name: "Journal" },
+  ]
+
+
   return (
     <>
       <Head>
@@ -10,7 +16,7 @@ const About = () => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <Nav />
+      <Nav links={navLinks} />
 
       <main>
         <div className="card r2">

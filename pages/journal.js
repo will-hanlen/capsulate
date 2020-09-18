@@ -5,6 +5,11 @@ import { server } from '../config'
 
 function Journal(props) {
 
+  let navLinks = [
+    { href: "/", name: "New Entry" },
+    { href: "/about", name: "About" },
+  ]
+
   return (
     <>
       <Head>
@@ -12,7 +17,7 @@ function Journal(props) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <Nav />
+      <Nav links={navLinks} />
 
 
       <JournalContainer entries={props.entries}/>

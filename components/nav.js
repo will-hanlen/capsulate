@@ -8,15 +8,23 @@ class Nav extends React.Component {
 
   render() {
 
+    let navLinks = (<></>)
+
+    if (this.props.links) {
+      navLinks = this.props.links.map( (link, index) => {
+        return (
+          <Link key={index} href={link.href}><a className="card actionable r1">{link.name}</a></Link>
+        )
+      })
+    }
+
     return (
       <>
         <nav>
-          <Link href="/"><a className="card actionable r0">New Entry</a></Link>
-          <Link href="/journal"><a className="card actionable r1">Journal</a></Link>
-          <Link href="/about"><a className="card actionable r2">About</a></Link>
+          {navLinks}
         </nav>
 
-        <style jsx>{`
+        <style global jsx>{`
           nav {
             padding: 1rem;
             display: flex;
