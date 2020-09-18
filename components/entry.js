@@ -1,9 +1,12 @@
 const Entry = (props) => {
   let date = props.date.split("-")
   let dateString = new Date(date[0], date[1], date[2]).toDateString()
+
+  let tiltClass = `r${Math.floor(Math.random()*5)}`
+
   return (
     <>
-      <div className={`card r${Math.floor(Math.random()*5)}`}>
+      <div className={`card ${tiltClass}`}>
         <p>{dateString}</p>
         <p>{props.text}</p>
         <img className="card photoCard" src={props.photo} />
