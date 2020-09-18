@@ -1,9 +1,15 @@
-const FullContainer = (props) => {
+import Entry from './entry'
+
+const JournalContainer = (props) => {
 
   return (
-    <div>
-      <main className="journal-flex">
-        {props.children}
+    <>
+      <main>
+        {props.entries.map( entry => {
+          return (
+            <Entry key={entry.id} date={entry.date} text={entry.text} photo={entry.photo} />
+          )
+        })}
       </main>
 
       <style jsx>{`
@@ -19,8 +25,10 @@ const FullContainer = (props) => {
         }
 
       `}</style>
-    </div>
+    </>
   )
 }
 
-export default FullContainer
+
+
+export default JournalContainer
