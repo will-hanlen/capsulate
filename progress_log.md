@@ -74,3 +74,16 @@ The site can now be demoed live [here.](https://capsulate.vercel.app)
 
 The journal is created by reading data from an API. The api is also hosted within nextjs. The API isn't hookedup to a database so it is just reading from a variable. This means you can't do any CRUD operations except read.
 
+## Desk theme
+
+18 Sept 2020
+
+The app now has a less boring look. It is now meant to look like pieces of paper strewn across a desk. There are some cool hover and focus effects I made that give a responsive feel. It feel more "appy" now. Much more friendly and approachable.
+
+## Sass replaces css
+
+18 Sept 2020
+
+In order to simplify the now fancy desk themed styling, I started using Sass instead of css. This lets me write much more readable code that will hopefully be more maintainable.
+
+
