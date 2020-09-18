@@ -1,0 +1,105 @@
+html {
+
+  --text: #111111;
+  --nav: #dee0e0;
+  --background: #f0f2f2;
+  --paper: #fdfeff;
+
+  --container-width: 800px;
+
+  --radius: 0;
+
+  --shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+  --active-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12),
+    0 5px 5px -3px rgba(0, 0, 0, 0.4);
+
+  --no-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+
+  font-size: 18px;  /* Mobile base font size */
+
+}
+
+@media (min-width: 1000px) {  /* Desktop modifications */
+  html {
+    font-size: 20px;  /* Desktop base font size */
+  }
+}
+
+body {
+  font-size: 1rem;
+  margin: 0;
+  font-family: monospace;
+  line-height: 1.4rem;
+  letter-spacing: 0.1em;
+  background-image: url("wood.png");
+  color: var(--text);
+}
+
+input {
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+label {
+  cursor: pointer;
+}
+
+.card {
+  color: var(--text);
+  text-shadow: 0 0 1px #00000055;
+  text-decoration: none;
+  background-image: url('paper.png');
+  border: none;
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-sizing: border-box;
+  transition: box-shadow 300ms, transform 300ms;
+  -webkit-filter: blur(0px);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility:    hidden;
+  -ms-backface-visibility:     hidden;
+
+  &:focus {
+    outline: none;
+  }
+
+  &.r0 {
+    transform: rotate(-2deg);
+  }
+  &.r1 {
+    transform: rotate(2deg);
+  }
+  &.r2 {
+    transform: rotate(1deg);
+  }
+  &.r3 {
+    transform: rotate(-1deg);
+  }
+  &.r5 {
+    transform: rotate(-1.5deg);
+  }
+  &.r4 {
+    transform: rotate(-1.5deg);
+  }
+
+  &.actionable:hover, &.actionable:focus {
+    box-shadow: var(--active-shadow);
+    transform: rotate(0) scale(1.05);
+  }
+
+  &.photoCard {
+    padding: 0;
+    max-width: 100%;
+    max-height: 15rem;
+  }
+
+}
+
+
+
