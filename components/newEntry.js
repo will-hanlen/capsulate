@@ -45,7 +45,7 @@ class NewEntry extends React.Component {
               <img className="card photoCard r1" hidden={this.state.imagePreviewHidden} src={this.state.imagePreviewSource} />
 
               <label tabIndex="0" className="card actionable r4" htmlFor="file">{this.state.imageButtonPrompt}</label>
-              <input id="file" type="file" onChange={this.handlePhotoChange}/>
+              <input id="file" type="file" accept="image/*" onChange={this.handlePhotoChange}/>
 
 
               <textarea className="card actionable r3" id="text-area" required autoFocus placeholder="Write your entry here..." onChange={this.handleTextChange} tabIndex="0" autoFocus />
