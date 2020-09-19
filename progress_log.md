@@ -86,4 +86,9 @@ The app now has a less boring look. It is now meant to look like pieces of paper
 
 In order to simplify the now fancy desk themed styling, I started using Sass instead of css. This lets me write much more readable code that will hopefully be more maintainable.
 
+## Moving forward with MongoDB
+
+19 Sept 2020
+
+I feel like I'm reaching diminishing returns working on the front end. I can continue to make it prettier forever, but that doesn't change the fact that the app doesn't do anything yet... I need to build a way to upload entries and save them in the cloud. The problem is that I don't have much experience with connecting databases. I'm currently going through the MongoDB University Intro course. Hopefully that doesn't take more than a few days.
 
