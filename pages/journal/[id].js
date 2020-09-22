@@ -17,6 +17,10 @@ function singleEntry(props) {
   ]
 
   const handleDelete = async () => {
+    if (!confirm("Are you sure you want to delete this entry?")) {
+      return
+    }
+
     let entryId = router.query.id
 
     try {
