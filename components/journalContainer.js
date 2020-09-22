@@ -7,7 +7,7 @@ const JournalContainer = (props) => {
       <main>
         {props.entries.map( entry => {
           return (
-            <Entry key={entry.id} date={entry.date} text={entry.text} photo={entry.photo} />
+            <Entry key={entry._id} id={entry._id} date={entry.date} text={entry.text} photoUrl={entry.photoUrl} />
           )
         })}
       </main>

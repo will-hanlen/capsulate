@@ -1,7 +1,8 @@
-import Nav from '../components/nav'
-import JournalContainer from '../components/journalContainer'
+import Nav from '../../components/nav'
+import JournalContainer from '../../components/journalContainer'
 import Head from 'next/head'
-import { server } from '../config'
+import { server } from '../../config'
+import fetch from 'isomorphic-unfetch'
 
 function Journal(props) {
 
@@ -26,11 +27,12 @@ function Journal(props) {
 
 }
 
-export async function getServerSideProps() {
-  const res = await fetch(`${server}/api/journal`)
-  const entries = await res.json()
+Journal.getInitialProps = async () => {
 
-  return { props: { entries } }
+  const res = await fetch(`${server}/api/journal`)
+  const { data } = await res.json()
+
+  return { entries: data }
 }
 
 export default Journal
