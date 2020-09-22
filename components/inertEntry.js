@@ -1,6 +1,5 @@
-import Link from 'next/link'
 
-const Entry = (props) => {
+const inertEntry = (props) => {
   let date = props.date.split("-")
   let dateString = new Date(date[0], date[1], date[2]).toDateString()
 
@@ -9,18 +8,16 @@ const Entry = (props) => {
   return (
     <>
 
-      <Link href={`journal/${props.id}`}>
-      <a className={`card actionable ${tiltClass}`}>
+      <div className={`card ${tiltClass}`}>
         <p>{dateString}</p>
         <p>{props.text}</p>
         <img className="card photoCard" src={props.photoUrl} />
-      </a>
-      </Link>
+      </div>
 
 
       <style jsx>{`
 
-        a {
+        div {
           text-decoration: none;
           flex-basis: 30%;
           min-width: 200px;
@@ -37,4 +34,4 @@ const Entry = (props) => {
   )
 }
 
-export default Entry
+export default inertEntry
