@@ -24,7 +24,7 @@ function singleEntry(props) {
     let entryId = router.query.id
 
     try {
-      const deleted = await fetch(`http://localhost:3000/api/journal/${entryId}`, { method: 'DELETE' })
+      const deleted = await fetch(`${server}/api/journal/${entryId}`, { method: 'DELETE' })
 
       router.push('/journal')
     } catch (error) {

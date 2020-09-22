@@ -43,7 +43,7 @@ class NewEntry extends React.Component {
       text: this.state.text
     }
 
-    const deleted = await fetch(`http://localhost:3000/api/journal`, {
+    const deleted = await fetch(`${server}/api/journal`, {
       method: 'POST',
       headers: {
         "Accept": "application/json",
