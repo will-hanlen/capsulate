@@ -1,7 +1,12 @@
+import { server } from '../config'
+import fetch from 'isomorphic-unfetch'
+import { withRouter } from 'next/router'
+
 class NewEntry extends React.Component {
 
   constructor(props) {
     super(props)
+    this.router = props.router
     this.state = {
       text: '',
       date: new Date().toISOString().slice(0, 10),
@@ -30,9 +35,24 @@ class NewEntry extends React.Component {
     this.setState({date: event.target.value})
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
+
     event.preventDefault()
-    alert("This React form doesn't upload to anywhere yet. There is no database. However, state is handled by this React form in the way that it should be for a production application.")
+    const formData = {
+      date: this.state.date,
+      text: this.state.text
+    }
+
+    const deleted = await fetch(`http://localhost:3000/api/journal`, {
+      method: 'POST',
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+
+    this.router.push('/journal')
   }
 
   render() {
@@ -42,10 +62,12 @@ class NewEntry extends React.Component {
           <main>
           <form onSubmit={this.handleSubmit}>
 
+              {/*
               <img className="card photoCard r1" hidden={this.state.imagePreviewHidden} src={this.state.imagePreviewSource} />
 
               <label tabIndex="0" className="card actionable r4" htmlFor="file">{this.state.imageButtonPrompt}</label>
               <input id="file" type="file" accept="image/*" onChange={this.handlePhotoChange}/>
+              */}
 
 
               <textarea className="card actionable r3" id="text-area" required autoFocus placeholder="Write your entry here..." onChange={this.handleTextChange} tabIndex="0" autoFocus />
@@ -104,4 +126,4 @@ class NewEntry extends React.Component {
 
 }
 
-export default NewEntry
+export default withRouter(NewEntry)

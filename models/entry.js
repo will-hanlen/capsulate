@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const entrySchema = new mongoose.Schema({
   date: {
     type: "String",
+    unique: false,
     required: [true, "Needs a date"]
   },
   text: {
