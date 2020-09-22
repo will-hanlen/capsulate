@@ -5,7 +5,7 @@ const JournalContainer = (props) => {
   return (
     <>
       <main>
-        {props.entries.map( entry => {
+        {props.entries.sort((a,b)=>b-a).map( entry => {
           return (
             <Entry key={entry._id} id={entry._id} date={entry.date} text={entry.text} photoUrl={entry.photoUrl} />
           )
