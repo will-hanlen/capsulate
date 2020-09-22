@@ -92,3 +92,9 @@ In order to simplify the now fancy desk themed styling, I started using Sass ins
 
 I feel like I'm reaching diminishing returns working on the front end. I can continue to make it prettier forever, but that doesn't change the fact that the app doesn't do anything yet... I need to build a way to upload entries and save them in the cloud. The problem is that I don't have much experience with connecting databases. I'm currently going through the MongoDB University Intro course. Hopefully that doesn't take more than a few days.
 
+## Success with MongoDB
+
+22 Sept 2020
+
+There is now a real backend hooked up to a real database. You can do normal CRUD operations on entries.
+However as of right now I can't yet handle image upload. In order to keep things simple, I think I will just allow a url upload so that I don't have to host any images myself. That's not ideal but it will work.
